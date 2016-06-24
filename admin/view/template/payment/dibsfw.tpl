@@ -25,9 +25,8 @@
             </div>
             <div class="panel-body">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-bluepay-redirect" class="form-horizontal">
-
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"  for="input-test"><?php echo $entry_status; ?></label>
+                        <label class="col-sm-2 control-label" for="input-test"><span data-toggle="tooltip" title="<?php echo $entry_status_description; ?>"><?php echo $entry_status;?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_status" class="form-control">
                                 <?php if ($dibsfw_status) { ?>
@@ -40,9 +39,8 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-title"><?php echo $entry_text_title; ?></label>
+                        <label class="col-sm-2 control-label" for="input-title"><span data-toggle="tooltip" title="<?php echo $entry_text_title_description; ?>"><?php echo $entry_text_title; ?></span></label>
                         <div class="col-sm-10">
                             <?php if ($dibsfw_text_title != "") { ?>
                             <input type="text" name="dibsfw_text_title" class="form-control" value="<?php echo $dibsfw_text_title; ?>" />
@@ -52,13 +50,13 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-partnerid"><?php echo $entry_mid; ?></label>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-partnerid"><span data-toggle="tooltip" title="<?php echo $entry_mid_description; ?>"><?php echo $entry_mid;?></span></label>
                         <div class="col-sm-10">
                             <input type="text" name="dibsfw_mid" class="form-control" value="<?php echo $dibsfw_mid; ?>" />
                             <?php if ($error_mid) { ?>
-                            <span class="error"><?php echo $error_mid; ?></span>
-                            <?php } ?>
+				<div class="text-danger"><?php echo $error_mid; ?></div>
+			    <?php } ?>
                         </div>
                     </div>
 
@@ -70,14 +68,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-hmac"><?php echo $entry_key1; ?></label>
+                        <label class="col-sm-2 control-label" for="input-hmac"><span data-toggle="tooltip" title="<?php echo $entry_key1_description; ?>"><?php echo $entry_key1; ?></span></label>
                         <div class="col-sm-10">
                             <input type="text" name="dibsfw_key1" class="form-control" value="<?php echo $dibsfw_key1; ?>" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-hmac"><?php echo $entry_key2; ?></label>
+                        <label class="col-sm-2 control-label" for="input-hmac"><span data-toggle="tooltip" title="<?php echo $entry_key2_description; ?>"><?php echo $entry_key2; ?></span></label>
                         <div class="col-sm-10">
                             <input type="text" name="dibsfw_key2" class="form-control" value="<?php echo $dibsfw_key2; ?>" />
                         </div>
@@ -85,7 +83,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-testmode"><?php echo $entry_testmode; ?></label>
+                        <label class="col-sm-2 control-label" for="input-testmode"><span data-toggle="tooltip" title="<?php echo $entry_testmode_description; ?>"><?php echo $entry_testmode; ?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_testmode" class="form-control">
                                 <?php if ($dibsfw_testmode == 'yes') { ?>
@@ -101,26 +99,9 @@
                             </select>
                         </div>
                     </div>
+     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-order-status"><?php echo $entry_fee; ?></label>
-                        <div class="col-sm-10">
-                            <select name="dibsfw_fee" class="form-control">
-                                <?php if ($dibsfw_fee == 'no') { ?>
-                                <option value="no" selected="selected"><?php echo $text_no; ?></option>
-                                <?php } else { ?>
-                                <option value="no"><?php echo $text_no; ?></option>
-                                <?php } ?>
-                                <?php if ($dibsfw_fee == 'yes') { ?>
-                                <option value="yes" selected="selected"><?php echo $text_yes; ?></option>
-                                <?php } else { ?>
-                                <option value="yes"><?php echo $text_yes; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-geo-zone"><?php echo $entry_capturenow; ?></label>
+                        <label class="col-sm-2 control-label" for="input-capturenow"><span data-toggle="tooltip" title="<?php echo $entry_capturenow_description; ?>"><?php echo $entry_capturenow; ?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_capturenow" class="form-control">
                                 <?php if ($dibsfw_capturenow == 'no') { ?>
@@ -138,7 +119,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-geo-zone"><?php echo $entry_decorator; ?></label>
+                        <label class="col-sm-2 control-label" for="input-geo-zone"><span data-toggle="tooltip" title="<?php echo $entry_decorator_description; ?>"><?php echo $entry_decorator; ?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_decorator" class="form-control">
                                 <?php if ($dibsfw_decorator == 'default') { ?>
@@ -181,14 +162,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-account"><?php echo $entry_account; ?></label>
+                        <label class="col-sm-2 control-label" for="input-account"><span data-toggle="tooltip" title="<?php echo $entry_account_description; ?>"><?php echo $entry_account; ?></span></label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="dibsfw_account" value="<?php echo $dibsfw_account; ?>" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_lang; ?></label>
+                        <label class="col-sm-2 control-label" for="input-status"><span data-toggle="tooltip" title="<?php echo $entry_lang_description; ?>"><?php echo $entry_lang; ?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_lang" class="form-control">
                                 <?php if ($dibsfw_lang == 'en') { ?>
@@ -237,7 +218,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_distrtype; ?></label>
+                        <label class="col-sm-2 control-label" for="input-status"> <span data-toggle="tooltip" title="<?php echo $entry_distrtype_description; ?>"><?php echo $entry_distrtype; ?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_distrtype" class="form-control">
                                 <?php if ($dibsfw_distrtype == 'notset') { ?>
@@ -262,7 +243,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_order_status_id; ?></label>
+                        <label class="col-sm-2 control-label" for="input-status"><span data-toggle="tooltip" title="<?php echo $entry_order_status_id_description; ?>"><?php echo $entry_order_status_id; ?></span></label>
                         <div class="col-sm-10">
                             <select name="dibsfw_order_status_id" class="form-control">
                                 <?php foreach ($order_statuses as $order_status) { ?>

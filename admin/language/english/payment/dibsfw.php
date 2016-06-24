@@ -1,11 +1,5 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
     // Heading
     $_['heading_title']         = 'DIBS FlexWin';
     $_['text_edit']             = 'Edit DIBS FlexWin';
@@ -52,75 +46,80 @@
                                    </a>';
     $_['text_techsite']         = 'Detailed description of configuration parameters can be found on our <a href="http://tech.dibs.dk" target="_blank">Tech site</a>.';
     // Entry          
-    $_['entry_status'] 	        = 'Status:' .
-                                  '<br /><span class="help">' . 
-                                      'Module status.' .
-                                  '</span>';
-    $_['entry_lang'] 	        = 'Language:' .
-                                  '<br /><span class="help">' . 
-                                      'Language of Payment Window.' .
-                                  '</span>';
-    $_['entry_decorator'] 	        = 'Decorator:' .
-                                  '<br /><span class="help">' . 
-                                      'Decoretor.' .
-                                  '</span>';
-    $_['entry_distrtype']       = 'Distribution type:' .
-                                  '<br /><span class="help">' . 
-                                      'Which media the bill should be sent to the customer.' .
-                                  '</span>';
+    $_['entry_status'] 	        = 'Status:';
+                                  
+    $_['entry_status_description'] = 'Module status.'; 
+    
+    $_['entry_lang'] 	        = 'Language:';
+                                 
+    
+    $_['entry_lang_description']= 'Language of Payment Window.';
+    
+    
+    $_['entry_decorator'] 	        = 'Decorator:';
+                                 
+    $_['entry_decorator_description'] = 'Specifies which of the pre-built decorators to use';
+    
+    
+    $_['entry_distrtype']       = 'Distribution type:';
+    
+    $_['entry_distrtype_description'] = 'Which media the bill should be sent to the customer.';
+    
     
     $_['entry_default_title']   = 'DIBS FlexWin';
-    $_['entry_text_title']      = 'Title:' .
-                                  '<br /><span class="help">' . 
-                                      'Payment module title showed by OpenCart to customer.' .
-                                  '</span>';
-    $_['entry_testmode']        = 'Test:' .
-                                  '<br /><span class="help">' . 
-                                      'Run module in test mode.' .
-                                  '</span>';
-    $_['entry_mid']             = 'Merchant ID:' .
-                                  '<br /><span class="help">' . 
-                                      'Your merchant ID in DIBS system.' .
-                                  '</span>';
-    $_['entry_key1']             = 'Key1:' .
-                                  '<br /><span class="help">' . 
-                                      'Your k1 keySecret key. Need to calculate MD5 key.' .
-                                  '</span>';
-    $_['entry_key2']             = 'Key2:' .
-                                  '<br /><span class="help">' . 
-                                      'Your k1 keySecret key. Need to calculate MD5 key.' .
-                                  '</span>';
-    $_['entry_paytype']         = 'Paytype:' .
-                                  '<br /><span class="help">' . 
-                                      'Comma-separated paytypes available for customers (e.g.: VISA,MC).' .
-                                  '</span>';
+    $_['entry_text_title']      = 'Title:';
+    
+    $_['entry_text_title_description']      = 'Payment module title showed by OpenCart to customer.';
+    
+    $_['entry_testmode']        = 'Test:';
+                                  
+    $_['entry_testmode_description'] = 'Run module in test mode.';
+    
+    $_['entry_mid']             = 'Merchant ID:';
+                                  
+    $_['entry_mid_description'] = 'Your merchant ID in DIBS system.';
+    
+    $_['entry_key1']             = 'Key1:';
+    
+    $_['entry_key1_description'] = 'Your k1 keySecret key. Need to calculate MD5 key.';
+    
+    
+    $_['entry_key2']             = 'Key2:';
+    $_['entry_key2_description'] = 'Your k1 keySecret key. Need to calculate MD5 key.';
+    
+    
+    $_['entry_paytype']         = 'Paytype:';
+                                 
+    $_['entry_paytype_description'] = 'Comma-separated paytypes available for customers (e.g.: VISA,MC).';
+    
     $_['entry_default_paytype'] = '';
     $_['entry_fee']          	= 'Add fee:' .
                                   '<br /><span class="help">' . 
                                       'Customers pays fee.' .
                                   '</span>';
-    $_['entry_capturenow']      = 'Capture now:' .
-                                  '<br /><span class="help">' . 
-                                      'Function to automatically capture the transaction upon a successful authorization (DIBS PW only).' .
-                                  '</span>';
+    $_['entry_capturenow']      = 'Capture now:';
+    
+    $_['entry_capturenow_description'] = 'Function to automatically capture the transaction upon a successful authorization (DIBS PW only).';
+    
     $_['entry_sort_order']   	= 'Sort Order:';
     $_['entry_hmac']          	= 'HMAC:' .
                                   '<br /><span class="help">' . 
                                       'Transaction protection key.' .
                                   '</span>';
 
-    $_['entry_account']         = 'Account:' .
-                                  '<br /><span class="help">' . 
-                                      'Account ID used to visually separate transactions in admin.' .
-                                  '</span>';
+    $_['entry_account']         = 'Account:';
+    
+    $_['entry_account_description'] = 'Account ID used to visually separate transactions in admin.';
+    
+    
     $_['entry_distr']        	= 'Distribution type:' .
                                   '<br /><span class="help">' . 
                                       'Only relevant for invoice payment types (DIBS PW only).' .
                                   '</span>';
-    $_['entry_order_status_id'] = 'Order Status:' .
-                                  '<br /><span class="help">' . 
-                                      'Order status after success payment.' .
-                                  '</span>';
+    $_['entry_order_status_id'] = 'Order Status:';
+    
+    $_['entry_order_status_id_description'] =  'Order status after success payment.';
+    
     $_['entry_geo_zone_id']        = 'Geo Zone:';
     $_['entry_total']           = 'Total:<br /><span class="help">' . 
                                   'The checkout total the order must reach' .

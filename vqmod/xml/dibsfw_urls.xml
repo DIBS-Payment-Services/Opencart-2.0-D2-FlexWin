@@ -4,16 +4,15 @@
         <version>1.0.0</version>
         <vqmver>2.4.0</vqmver>
         <author>dibs</author>
-
-        <file name="catalog/controller/common/seo_url.php">
+        <file name="catalog/controller/startup/seo_url.php">
                 <operation error="skip">
-                <search position="after" offset="3">
+                	<search position="after" offset="3">
                         <![CDATA[$this->request->get['route'] = 'information/information';]]>
-                </search>
-                <add>
+                	</search>
+                	<add>
                         <![CDATA[ if(preg_match("/^payment\/dibsfw\/(success|cancel|callback)\/?$/", $this->request->get['_route_'], $match)) {
                             $this->request->get['route'] = 'payment/dibsfw/' . $match[1];}]]>
-                </add>
+                	</add>
                 </operation>
         </file>
 </modification>
