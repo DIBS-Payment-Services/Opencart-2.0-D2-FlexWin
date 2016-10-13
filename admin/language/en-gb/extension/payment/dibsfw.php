@@ -34,6 +34,7 @@
     $_['ord_price_title']       = 'Price';
     $_['entry_uniqueoid']       = 'Uniqueoid';
     $_['entry_pid']             = 'Partner ID:';
+    $_['text_extension']	 = 'Extensions';
     
     $_['text_distr_type_notset'] = 'Notset';
     $_['text_distr_type_email']  = 'Email';
@@ -42,7 +43,7 @@
     $_['text_info']              = 'Payment with DIBS Flex Win';
     
     $_['text_dibsfw']            = '<a onclick="window.open(\'http://dibspayment.com/\');">
-                                       <img src="http://tech.dibspayment.com/sites/tech/files/pictures/LOGO/DIBS/DIBS_logo_blue.png" alt="DIBS" title="DIBS" style="width:95px; height:48px;border: none;" />
+                                       <img src="view/image/payment/dibs.png" alt="DIBS" title="DIBS" style="width:95px; height:48px;border: none;" />
                                    </a>';
     $_['text_techsite']         = 'Detailed description of configuration parameters can be found on our <a href="http://tech.dibs.dk" target="_blank">Tech site</a>.';
     // Entry          
@@ -66,7 +67,7 @@
     $_['entry_distrtype_description'] = 'Which media the bill should be sent to the customer.';
     
     
-    $_['entry_default_title']   = 'DIBS FlexWin';
+    $_['entry_default_title']   = '';
     $_['entry_text_title']      = 'Title:';
     
     $_['entry_text_title_description']      = 'Payment module title showed by OpenCart to customer.';

@@ -1,10 +1,12 @@
 <?php
 
-class ModelPaymentDibsfw extends Model {
+class ModelExtensionPaymentDibsfw extends Model {
     
-    const MODULE_VERSION = 'opc_fw_vqm_3.0.4';
+    const MODULE_VERSION = 'opc_fw_vqm_3.0.5';
     
     public function getMethod($address, $total) {
+        $this->load->language('extension/payment/dibsfw');
+
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . 
                                   "zone_to_geo_zone WHERE geo_zone_id = '" . 
                                   (int)$this->config->get('dibsfw_geo_zone_id') . 
@@ -23,24 +25,21 @@ class ModelPaymentDibsfw extends Model {
         else {
             $status = false;
 	}	
-		
 	$method_data = array();
         $sTitle = "";
-
+        $logo = $this->language->get('dibs_checkout_logo');
         $sUsersTitle = $this->config->get('dibsfw_text_title');
         if(!empty($sUsersTitle)) {
             $sTitle = $sUsersTitle;
         }
-        else $sTitle = $this->language->get('text_title');
         if ($status) {  
             $method_data = array( 
                 'code'       => 'dibsfw',
-                'title'      => $sTitle,
+                'title'      => $sTitle . "<br />" .$logo,
                 'sort_order' => $this->config->get('dibsfw_sort_order'),
                 'terms'      => ''
             );
         }
-   
         return $method_data;
     }
     
@@ -66,7 +65,12 @@ class ModelPaymentDibsfw extends Model {
         $requestParams['cancelurl']          =  $this->config->get('config_url') .  
                                                     'payment/dibsfw/cancel';
         $requestParams['callbackurl']        =  $this->config->get('config_url') .  
-                                                    'payment/dibsfw/callback';
+                                                        'payment/dibsfw/callback';
+        // for local testing 
+        if(isset($this->request->server['callback_url'])) {
+             $requestParams['callbackurl'] = $this->request->server['callback_url'];
+        }
+        
         $requestParams['s_callbackfix']       = $this->config->get('config_url') .  
                                                     'payment/dibsfw/callback';
             
@@ -192,8 +196,8 @@ class ModelPaymentDibsfw extends Model {
         array_multisort($sort_order, SORT_ASC, $results);
         foreach ($results as $result) {
                 if ($this->config->get($result['code'] . '_status')) {
-                        $this->load->model('total/' . $result['code']);
-                        $this->{'model_total_' . $result['code']}->getTotal($total_data);
+                        $this->load->model('extension/total/' . $result['code']);
+                        $this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
                 }
         }
         $order_info = $this->model_checkout_order->getOrder((int)$this->session->data['order_id']);
@@ -234,5 +238,21 @@ class ModelPaymentDibsfw extends Model {
     public static function utf8Fix($sText) {
         return (mb_detect_encoding($sText) == "UTF-8" && mb_check_encoding($sText, "UTF-8")) ?
                $sText : utf8_encode($sText);
+    }
+    
+    public function makeCurlCallback() {
+        $sResult = "";
+        $sURL = $this->config->get('config_url') . 'payment/dibsfw/callback';
+        $ch = curl_init($sURL);
+        if($ch) {
+            curl_setopt($ch, CURLOPT_POST, TRUE);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($ch, CURLOPT_HEADER, FALSE);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+            $sResult = curl_exec($ch);
+            echo curl_error($ch);
+            curl_close($ch);
+        }
     }
 }

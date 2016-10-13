@@ -1,18 +1,18 @@
 <?php
 
-class ControllerPaymentDibsfw extends Controller {
+class ControllerExtensionPaymentDibsfw extends Controller {
         const REDIRECT_URL = 'https://payment.architrade.com/paymentweb/start.action';
         
         public function index() {
-            $this->language->load('payment/dibsfw');
+            $this->language->load('extension/payment/dibsfw');
             $data['button_confirm'] = $this->language->get('button_confirm');
             $data['text_info'] = $this->language->get('text_info');
             $this->load->model('checkout/order');
             $mOrderInfo = $this->model_checkout_order->getOrder((int)$this->session->data['order_id']);
-            $this->load->model('payment/dibsfw');
-
+            $this->load->model('extension/payment/dibsfw');
+            
             /** DIBS integration */
-            $aData = $this->model_payment_dibsfw->getRequestParams($mOrderInfo);
+            $aData = $this->model_extension_payment_dibsfw->getRequestParams($mOrderInfo);
 
             /* DIBS integration **/
             $data['hidden'] = $aData;
@@ -24,7 +24,7 @@ class ControllerPaymentDibsfw extends Controller {
                               '/template/payment/dibsfw.tpl' :
                               $this->template = 'default/template/payment/dibsfw.tpl';
             
-            return $this->load->view('payment/dibsfw.tpl', $data);
+            return $this->load->view('extension/payment/dibsfw.tpl', $data);
     }
     
     public function callback() {
@@ -34,7 +34,11 @@ class ControllerPaymentDibsfw extends Controller {
     }
     
     public function success() {
-         $this->response->redirect($this->url->link('checkout/success'));
+         if(isset($this->request->server['callback_url'])) {
+            $this->load->model('extension/payment/dibsfw');
+            $this->model_extension_payment_dibsfw->makeCurlCallback();
+         }
+        $this->response->redirect($this->url->link('checkout/success'));
     }
     
     public function cancel() {

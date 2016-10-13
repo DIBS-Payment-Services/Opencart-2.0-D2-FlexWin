@@ -1,17 +1,18 @@
 <?php
 
-class ControllerPaymentDibsfw extends Controller {
+class ControllerExtensionPaymentDibsfw extends Controller {
    
     private $error = array(); 
     
     public function index() {
-        $this->language->load('payment/dibsfw');
+        
+        $this->language->load('extension/payment//dibsfw');
         $this->load->model('setting/setting');
 			
 	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
             $this->model_setting_setting->editSetting('dibsfw', $this->request->post);				
             $this->session->data['success'] = $this->language->get('text_success');
-            $this->response->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
+            $this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true));
 	}
         
         $data['heading_title'] = $this->language->get('heading_title');
@@ -125,7 +126,8 @@ class ControllerPaymentDibsfw extends Controller {
     	if(isset($this->error['error_mid'])) {
             $data['error_mid'] = $this->error['error_mid']; 
         }
-    
+        
+        /*
   	$data['breadcrumbs'] = array();
    	$data['breadcrumbs'][] = array(
             'text'      => $this->language->get('text_home'),
@@ -144,9 +146,35 @@ class ControllerPaymentDibsfw extends Controller {
             'href'      => $this->url->link('payment/dibsfw', 'token=' . $this->session->data['token'], 'SSL'),
             'separator' => ' :: '
    	);
-				
-	$data['action'] = $this->url->link('payment/dibsfw', 'token=' . $this->session->data['token'], 'SSL');
-	$data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
+        */
+        
+        $data['breadcrumbs'] = array();
+
+        $data['breadcrumbs'][] = array(
+        'text'      => $this->language->get('text_home'),
+                'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+        );
+
+        $data['breadcrumbs'][] = array(
+                'text' => $this->language->get('text_extension'),
+                'href' => $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true)
+        );
+
+
+
+        $data['breadcrumbs'][] = array(
+
+        'text'      => $this->language->get('heading_title'),
+
+                'href'      => $this->url->link('extension/payment/dibsfw', 'token=' . $this->session->data['token'], true),
+
+        'separator' => ' :: '
+
+        );
+   				
+	$data['action'] = $this->url->link('extension/payment/dibsfw', 'token=' . $this->session->data['token'], true);
+
+	$data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true);
 
         $this->load->model('localisation/order_status');
 	$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
@@ -165,11 +193,13 @@ class ControllerPaymentDibsfw extends Controller {
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
-        $this->response->setOutput($this->load->view('payment/dibsfw.tpl', $data));
+        
+        $this->response->setOutput($this->load->view('extension/payment/dibsfw', $data));
+        
      }
      
      private function validate() {
-        if (!$this->user->hasPermission('modify', 'payment/dibsfw')) {
+        if (!$this->user->hasPermission('modify', 'extension/payment/dibsfw')) {
             $this->error['warning'] = $this->language->get('error_permission');
 	}
 		

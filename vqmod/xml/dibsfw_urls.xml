@@ -10,8 +10,8 @@
                         <![CDATA[$this->request->get['route'] = 'information/information';]]>
                 	</search>
                 	<add>
-                        <![CDATA[ if(preg_match("/^payment\/dibsfw\/(success|cancel|callback)\/?$/", $this->request->get['_route_'], $match)) {
-                            $this->request->get['route'] = 'payment/dibsfw/' . $match[1];}]]>
+                        <![CDATA[ if(preg_match("/^payment\/dibsfw\/(success|cancel|callback)\/?$/", @$this->request->get['_route_'], $match)) {
+                            $this->request->get['route'] = 'extension/payment/dibsfw/' . $match[1];}]]>
                 	</add>
                 </operation>
         </file>
